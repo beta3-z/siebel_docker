@@ -1,0 +1,11 @@
+1_images/volume/siebel_images/*.jar
+1_images/volume/siebel_images/*.sh
+1_images/volume/siebel_images/*.bat
+1_images/volume/siebel_images/*.ini
+1_images/volume/siebel_images/*.html
+1_images/volume/siebel_images/*.zip
+1_images/volume/siebel_images/*.txt
+1_images/volume/siebel_images/*.rsp
+1_images/volume/Siebel_Install_Image
+SiebelSetupError.txt
+snic_unix.rsp
