@@ -1,4 +1,4 @@
-mkdir Siebel_Install_Image
-yum install -y java-1.8.0-openjdk;
+#! /bin/bash
+mkdir Siebel_Install_Image;
 cd ./siebel_images;
 java -jar ./snic.jar -silent -responseFile ../snic_unix.rsp;

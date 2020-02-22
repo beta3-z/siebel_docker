@@ -22,6 +22,10 @@
 && groupadd -g  487 siebel \
 && useradd -m -g siebel -G siebel -u 9999  siebel \
 && chmod -R 755 /siebel/cgw
+chown -R siebel /mnt/Siebel_Enterprise_Server
+chgrp -R siebel /mnt/Siebel_Enterprise_Server
+chown -R siebel siebel
+chgrp -R siebel siebel
 
 
 su siebel -c "/mnt/Siebel_Enterprise_Server/Disk1/install/runInstaller.sh -silent -responseFile /config/cgw.rsp -invPtrLoc /config/oraInst.loc -waitforcompletion -showProgress -oneclick"

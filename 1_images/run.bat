@@ -1,6 +1,4 @@
 @echo off
-SET VOLUME_WINDOWS_PATH="%cd%\volume"
-REM Change all \ entries with /
-SET VOLUME_PATH=%VOLUME_WINDOWS_PATH:\=/%
+SET VOLUME_PATH=%cd:\=/%/volume
 echo %VOLUME_PATH%
-docker run --rm -it -v %VOLUME_PATH%:"/volume" -w "/volume" centos bash ./create_images.sh
+docker run --rm -v %VOLUME_PATH%:"/volume" -w "/volume" senpai bash ./create_images.sh
