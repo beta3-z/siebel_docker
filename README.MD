@@ -18,6 +18,7 @@
 
 
 
+
 #Notes
 && groupadd -g  487 siebel \
 && useradd -m -g siebel -G siebel -u 9999  siebel \
@@ -29,3 +30,28 @@ chgrp -R siebel siebel
 
 
 su siebel -c "/mnt/Siebel_Enterprise_Server/Disk1/install/runInstaller.sh -silent -responseFile /config/cgw.rsp -invPtrLoc /config/oraInst.loc -waitforcompletion -showProgress -oneclick"
+
+Xvfb :99 -screen 0 1280x1024x24 &
+export DISPLAY=:99
+
+yum -y install epel-release
+yum install -y ImageMagick
+import -display :99 -window root ./shot.png
+
+yum install --enablerepo PowerTools --enablereop centosplus ./xdotool-3.20150503.1-1.el7.x86_64.rpm
+
+##Build xdootool library for centos 8
+yum install -y gcc /
+    git /
+    make /
+    libX11-devel /
+    libXtst-devel /
+    libXinerama-devel /
+    libxkbcommon-devel
+
+git clone https://github.com/jordansissel/xdotool.git
+
+cd xdotool
+make all install
+
+
