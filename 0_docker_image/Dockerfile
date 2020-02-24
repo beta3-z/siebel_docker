@@ -1,40 +1,40 @@
 FROM centos
 
-ARG JDK=jre-8u241-linux-i586.tar.gz
-ARG TEMP=/usr/tmp
+#ARG JDK=jre-8u241-linux-i586.tar.gz
+#ARG TEMP=/usr/tmp
+#
+#COPY $JDK $TEMP
+#
+#RUN mkdir /jdk && \
+#	tar -xf $TEMP/$JDK -C /jdk && \
+#	rm $TEMP/$JDK
+#
+RUN yum install -y java-1.8.0-openjdk
 
-COPY $JDK $TEMP
+## X11
+#RUN yum install -y xorg-x11-server-Xvfb \
+#	xdpyinfo
+#
+## xdtool
+#RUN yum install -y gcc \
+#    git \
+#    make \
+#    libX11-devel \
+#    libXtst-devel \
+#    libXinerama-devel \
+#    libxkbcommon-devel 
+#
+#ARG XDO=$TEMP/xdtool_build
 
-RUN mkdir /jdk && \
-	tar -xf $TEMP/$JDK -C /jdk && \
-	rm $TEMP/$JDK
+#RUN mkdir $XDO && \
+#	git clone https://github.com/jordansissel/xdotool.git $XDO && \
+#	make -C $XDO all install && \
+#	rm -rf $XDO
 
-#RUN yum install -y java-1.8.0-openjdk
-
-# X11
-RUN yum install -y xorg-x11-server-Xvfb \
-	xdpyinfo
-
-# xdtool
-RUN yum install -y gcc \
-    git \
-    make \
-    libX11-devel \
-    libXtst-devel \
-    libXinerama-devel \
-    libxkbcommon-devel 
-
-ARG XDO=$TEMP/xdtool_build
-
-RUN mkdir $XDO && \
-	git clone https://github.com/jordansissel/xdotool.git $XDO && \
-	make -C $XDO all install && \
-	rm -rf $XDO
-
-# IP16
-RUN yum install -y --skip-broken \
-	libnsl.i686 \
-	libXtst.i686
+## IP16
+#RUN yum install -y --skip-broken \
+#	libnsl.i686 \
+#	libXtst.i686
 
 # IP19 ?
 RUN yum install -y --skip-broken \

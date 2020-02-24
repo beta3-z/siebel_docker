@@ -33,8 +33,8 @@
 #chmod -R 755 /Siebel_Install_Image;
 #chown -R siebel /Siebel_Install_Image;
 #chgrp -R siebel /Siebel_Install_Image;
-Xvfb :99 -screen 0 1280x1024x24 &
-export DISPLAY=:99
+#Xvfb :99 -screen 0 1280x1024x24 &
+#export DISPLAY=:99
 #export JDK_PATH=$(alternatives --list | grep ^jre_1.8.0_openjdk | awk '{print $3}')
 export JDK_PATH=/jdk/$(ls /jdk)
 export INSTALL_PATH=${PWD}/16.0.0.0/Linux/Server/Siebel_Enterprise_Server/Disk1/install
@@ -48,8 +48,7 @@ ${INSTALL_PATH}/runInstaller.sh \
 	-responseFile /siebel/gateway.rsp \
 	-invPtrLoc /siebel/oraInst.loc \
 	-prereqlogloc /siebel/preq.log \
-	-wait_for_completion \
-	wait_for_completion \
+	-wait_for_completion
 ";
 #su siebel -c "./16.0.0.0/Linux/Server/Siebel_Enterprise_Server/Disk1/install/runInstaller.sh -silent -responseFile /siebel/gateway.rsp -invPtrLoc /siebel/oraInst.loc WAIT_FOR_COMPLETION -showProgress -oneclick JVM_OPTIONS=-Djava.awt.headless=true"
 #su siebel -c "xvfb-run -n 99 --server-args='-screen 0 1280x720x24 -ac +extension RANDR' ./16.0.0.0/Linux/Server/Siebel_Enterprise_Server/Disk1/install/runInstaller.sh -silent -responseFile /siebel/gateway.rsp -invPtrLoc /siebel/oraInst.loc -waitforcompletion -showProgress -oneclick"

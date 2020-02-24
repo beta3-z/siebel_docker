@@ -1,0 +1,12 @@
+## The silent mode image creation supports only the new image creation. It will not support add language/add product scenario:
+## Mention the image version to be extracted. It should be same as the one in jar file names. Example: 8.1.1.11 or 8.2.2.4
+## Mention the complete directory path to which the image gets extracted:
+## platforms supported are Windows, Linux, AIX , Solaris and HPUX
+## Refer the siebel.ini file for the product names. Example:Siebel_Tools , Siebel_Enterprise_Server 
+## Refer the siebel.ini file for the language names.Example:ENU. Multiple langauge codes should be seperated by comma.
+## Command to run the silent mode image creation is:"./snic.sh -silent -responseFile <response file>"
+imageVersion="17.0.0.0"
+imageDirectory="/Siebel_Install_Image"
+platformList={Linux}
+productList={Siebel_Enterprise_Server}
+languageList={ENU,RUS} 
