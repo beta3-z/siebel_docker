@@ -9,7 +9,12 @@ FROM centos
 #	tar -xf $TEMP/$JDK -C /jdk && \
 #	rm $TEMP/$JDK
 #
-RUN yum install -y java-1.8.0-openjdk
+RUN yum install -y java-1.8.0-openjdk openssl
+
+RUN mkdir /ssl /ssl/Keys /ssl/CA
+COPY Keys /ssl/Keys
+COPY CA /ssl/CA
+RUN cd /ssl/Keys && ./keygen.sh -r .. -s siebel -d *.company.com -c my-custom-ca 2>&1 | tee keygen.log
 
 ## X11
 #RUN yum install -y xorg-x11-server-Xvfb \

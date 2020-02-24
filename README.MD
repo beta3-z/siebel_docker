@@ -18,8 +18,8 @@
 5. Add parameters to oneclick.properties file:
     dbname=SIEBEL
 
-#2 Install gateway
-
+#2 Build gateway
+Run "build_gateway.bat"
 
 
 #Database Credentials

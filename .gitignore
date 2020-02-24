@@ -1,5 +1,8 @@
 **/images/*
 Siebel_Install_Image/*
+**/instantclient/*
+
 !.gitignore
 !.gitkeep
+
 SiebelSetupError.txt
