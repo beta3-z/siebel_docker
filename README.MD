@@ -7,16 +7,19 @@
 	docker pull store/oracle/database-enterprise:12.2.0.1-slim
 
 #0 Build senpai base docker image
-1. Open command line
-2. Run "build_senpai_image.bat"
+1. Download Oracle intantclient from https://www.oracle.com/database/technologies/instant-client/linux-x86-32-downloads.html:
+    - basik
+    - odbc
+    - jdbc
+    - sqlplu
+    - tools
+2. Put downloaded instantclients into 0_docker_image/instantclient directory
+2. Open command line
+3. Run "build_senpai_image.bat"
 
 #1 Create Images
 1. Place siebel image files into "1_create_siebel_images/volume/images" directory
-2. Change "imageDirectory" parameter inside the "snic_unix.rsp" file to "volume/Siebel_Install_Image".
-3. From command line run "create_images.bat" script
-4. Image creation will take some time. Wait while it finises.
-5. Add parameters to oneclick.properties file:
-    dbname=SIEBEL
+2. From command line run "create_images.bat"
 
 #2 Build gateway
 Run "build_gateway.bat"

@@ -40,10 +40,11 @@ chgrp -R siebel /Siebel_Install_Image;
 export JDK_PATH=$(alternatives --list | grep ^jre_1.8.0_openjdk | awk '{print $3}')
 #export JDK_PATH=/jdk/$(ls /jdk)
 export INSTALL_PATH=/Siebel_Install_Image/17.0.0.0/Linux/Server/Siebel_Enterprise_Server/Disk1/install
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/lib64"
+ln -s /lib64/libnsl.so.2 /lib64/libnsl.so.1
 
 su siebel -c "
 	${INSTALL_PATH}/runInstaller.sh \
-		-jreloc ${JDK_PATH} \
 		-showProgress \
 		-silent \
 		-oneclick \

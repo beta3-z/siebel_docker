@@ -41,6 +41,12 @@ RUN cd /ssl/Keys && ./keygen.sh -r .. -s siebel -d *.company.com -c my-custom-ca
 #	libnsl.i686 \
 #	libXtst.i686
 
+RUN groupadd -g  487 siebel && \
+	useradd -m -g siebel -G siebel -u 9999  siebel
+
+ENV INSTANT_CLIENT_VERSION=19.6
+COPY instantclient /
+
 # IP19 ?
 RUN yum install -y --skip-broken \
 	libgcc.i686 \
@@ -49,11 +55,26 @@ RUN yum install -y --skip-broken \
 	libXext.i686 \
 	libXau.i686 \
 	libcurl.i686 \
-	libXrender.i686
+	libXrender.i686 \
+	libnsl.i686 \
+	ksh \
+	tcsh \
+	libstdc++.i686 \
+	glibc.i686 \
+	libaio.i686 \
+	&& yum -y --skip-broken localinstall   oracle-instantclient*.i386.rpm \
+	&& yum clean all \
+	&& rm oracle-instantclient*.rpm \
+#	&& ln -s /usr/lib/oracle/$INSTANT_CLIENT_VERSION/client/lib/libclntsh.so.12.1 /usr/lib/oracle/$INSTANT_CLIENT_VERSION/client/lib/libclntsh.so \
+	&& mkdir /config \
+	&& touch /config/tnsnames.ora \
+	&& chmod 777 /config/tnsnames.ora \
+	&& rm -rf /var/cache/yum/x86_64 \
+	&& rm -rf /var/cache/yum/i686 \
+	&&	yum clean all
 
-RUN rm -rf /var/cache/yum/x86_64 && \
-	rm -rf /var/cache/yum/i686 \
-	yum clean all
-
-RUN groupadd -g  487 siebel && \
-	useradd -m -g siebel -G siebel -u 9999  siebel
+ENV ORACLE_HOME=/usr/lib/oracle/${INSTANT_CLIENT_VERSION}/client \
+    TNS_ADMIN=/config/ \
+    LD_LIBRARY_PATH="/usr/lib/oracle/${INSTANT_CLIENT_VERSION}-/client/lib:${LD_LIBRARY_PATH}"  \
+    PATH="/usr/lib/oracle/${INSTANT_CLIENT_VERSION}-/client/bin:${PATH}" \
+    LANG=en_US.UTF-8 
