@@ -1,5 +1,6 @@
 **/images/*
 Siebel_Install_Image/*
+Siebel_IP19_Install_Image/*
 **/instantclient/*
 
 !.gitignore

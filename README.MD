@@ -17,9 +17,9 @@
 2. Open command line
 3. Run "build_senpai_image.bat"
 
-#Create Images
-1. Place siebel image files into "1_create_siebel_images/volume/images" directory
-2. From command line run "create_images.bat"
+#Create IP17 Images
+1. Place siebel image files into "1_create_IP17_images/volume/images" directory
+2. From command line run "create_IP17_images.bat"
 
 #Build 17.0.0.0 IP
 ##Build gateway
@@ -30,6 +30,10 @@ Run "build_application_interface"
 
 ##Build enterprise server
 Run "build_enterprise_server"
+
+#Create IP19 Images
+1. Place siebel image files into "1_create_IP19_images/volume/images" directory
+2. From command line run "create_IP19_images.bat"
 
 #Upgrate to 19 IP
 
