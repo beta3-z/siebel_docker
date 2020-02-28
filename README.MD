@@ -1,4 +1,4 @@
-#Build senpai docker image which is our base image
+# Build senpai docker image which is our base image
 1. Download Oracle intantclient from https://www.oracle.com/database/technologies/instant-client/linux-x86-32-downloads.html:
     - basik
     - odbc
@@ -10,37 +10,37 @@
 3. Run "build_senpai_image"
 
 
-#Create IP17 Images
+# Create IP17 Images
 1. Place siebel image files into "1_create_IP17_images/volume/images" directory
 2. From command line run "create_IP17_images"
 
-#Build 17.0.0.0 IP
-##Build gateway
+# Build 17.0.0.0 IP
+## Build gateway
 Run "build_gateway"
 
-##Build application interface
+## Build application interface
 Run "build_application_interface"
 
-##Build enterprise server
+## Build enterprise server
 Run "build_enterprise_server"
 
 
-#Create IP19 Images
+# Create IP19 Images
 1. Place siebel image files into "1_create_IP19_images/volume/images" directory
 2. From command line run "create_IP19_images"
 
-#Upgrate to 19 IP
-##Update gateway
+# Upgrate to 19 IP
+## Update gateway
 Run "update_gateway"
 
-##Update application interface
+## Update application interface
 Run "update_application_unterface"
 
-##Update enterprise server
+## Update enterprise server
 Run "update_enterprise_server"
 
 
-#Create Oracle Database
+# Create Oracle Database
 
 
 ## Download Oracle Dabase Image
@@ -50,13 +50,13 @@ Run "update_enterprise_server"
     docker pull store/oracle/database-enterprise:12.2.0.1
     docker pull store/oracle/database-enterprise:12.2.0.1-slim
 
-##Database Credentials
+## Database Credentials
 	jdbc:oracle:thin:@localhost:1521:ORCLCDB
 	sys as sysdba / Oradoc_db1
 
 
 
-#Notes I've wrote in research process
+# Notes I've wrote in research process
 Xvfb :99 -screen 0 1280x1024x24 &
 export DISPLAY=:99
 
@@ -69,14 +69,14 @@ export LD_LIBRARY_PATH="$ORACLE_HOME:$LD_LIBRARY_PATH"
 export PATH="$ORACLE_HOME:$PATH"
 export LANG=en_US.UTF-8
 
-##Take screenshot from Xbfb
+## Take screenshot from Xbfb
 yum -y install epel-release
 yum install --enablerepo PowerTools -y ImageMagick
 
 import -display :99 -window root ./shot.png
 
 
-##Build xdotool library for centos 8
+## Build xdotool library for centos 8
 yum install -y gcc /
     git /
     make /
@@ -90,7 +90,7 @@ git clone https://github.com/jordansissel/xdotool.git
 cd xdotool
 make all install
 
-##Using xdotool
+## Using xdotool
 http://manpages.ubuntu.com/manpages/trusty/man1/xdotool.1.html
 
 export DISPLAY=:99
