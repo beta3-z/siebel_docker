@@ -71,10 +71,11 @@ RUN yum install -y --skip-broken \
 	&& chmod 777 /config/tnsnames.ora \
 	&& rm -rf /var/cache/yum/x86_64 \
 	&& rm -rf /var/cache/yum/i686 \
-	&&	yum clean all
+	&& yum clean all \
+	&& ln -s /lib64/libnsl.so.2 /lib64/libnsl.so.1
 
 ENV ORACLE_HOME=/usr/lib/oracle/${INSTANT_CLIENT_VERSION}/client \
     TNS_ADMIN=/config/ \
-    LD_LIBRARY_PATH="/usr/lib/oracle/${INSTANT_CLIENT_VERSION}-/client/lib:${LD_LIBRARY_PATH}"  \
+    LD_LIBRARY_PATH="/usr/lib/oracle/${INSTANT_CLIENT_VERSION}-/client/lib:${LD_LIBRARY_PATH}:/lib64"  \
     PATH="/usr/lib/oracle/${INSTANT_CLIENT_VERSION}-/client/bin:${PATH}" \
     LANG=en_US.UTF-8 

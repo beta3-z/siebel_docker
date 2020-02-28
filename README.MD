@@ -1,29 +1,22 @@
-#Oracle Dabase Image
-	! Registration on hub.docker.com required
-
-	https://hub.docker.com/_/oracle-database-enterprise-edition
-
-	docker pull store/oracle/database-enterprise:12.2.0.1
-	docker pull store/oracle/database-enterprise:12.2.0.1-slim
-
-#Build senpai base docker image
+#Build senpai docker image which is our base image
 1. Download Oracle intantclient from https://www.oracle.com/database/technologies/instant-client/linux-x86-32-downloads.html:
     - basik
     - odbc
     - jdbc
     - sqlplu
     - tools
-2. Put downloaded instantclients into 0_docker_image/instantclient directory
+2. Put downloaded instantclients into 0_base_image/instantclient directory
 2. Open command line
-3. Run "build_senpai_image.bat"
+3. Run "build_senpai_image"
+
 
 #Create IP17 Images
 1. Place siebel image files into "1_create_IP17_images/volume/images" directory
-2. From command line run "create_IP17_images.bat"
+2. From command line run "create_IP17_images"
 
 #Build 17.0.0.0 IP
 ##Build gateway
-Run "build_gateway.bat"
+Run "build_gateway"
 
 ##Build application interface
 Run "build_application_interface"
@@ -31,21 +24,39 @@ Run "build_application_interface"
 ##Build enterprise server
 Run "build_enterprise_server"
 
+
 #Create IP19 Images
 1. Place siebel image files into "1_create_IP19_images/volume/images" directory
-2. From command line run "create_IP19_images.bat"
+2. From command line run "create_IP19_images"
 
 #Upgrate to 19 IP
+##Update gateway
+Run "update_gateway"
+
+##Update application interface
+Run "update_application_unterface"
+
+##Update enterprise server
+Run "update_enterprise_server"
 
 
-#Database Credentials
+#Create Oracle Database
+
+
+## Download Oracle Dabase Image
+1. Register on hub.docker.com if needed
+2. To gane acess to Oracle Image you need to fill form on docker hub: https://hub.docker.com/_/oracle-database-enterprise-edition
+3. Pull one of Oracle docker images:
+    docker pull store/oracle/database-enterprise:12.2.0.1
+    docker pull store/oracle/database-enterprise:12.2.0.1-slim
+
+##Database Credentials
 	jdbc:oracle:thin:@localhost:1521:ORCLCDB
 	sys as sysdba / Oradoc_db1
 
 
 
-
-#Notes
+#Notes I've wrote in research process
 Xvfb :99 -screen 0 1280x1024x24 &
 export DISPLAY=:99
 
@@ -57,8 +68,6 @@ export TNS_ADMIN=/siebel/
 export LD_LIBRARY_PATH="$ORACLE_HOME:$LD_LIBRARY_PATH"
 export PATH="$ORACLE_HOME:$PATH"
 export LANG=en_US.UTF-8
-     
-
 
 ##Take screenshot from Xbfb
 yum -y install epel-release
