@@ -52,7 +52,8 @@ Run "update_enterprise_server"
 
 ## Database Credentials
 	jdbc:oracle:thin:@localhost:1521:ORCLCDB
-	sys as sysdba / Oradoc_db1
+	login: sys as sysdba
+    password: Oradoc_db1
 
 
 
